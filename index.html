@@ -253,63 +253,249 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
 
+        /* Skills Modal */
+        .skills-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .skills-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .skills-modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .skills-modal.active .skills-modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #FFD700;
+        }
+
+        .skills-modal h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 2rem;
+        }
+
+        .skill-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .skill-progress {
+            background: #f0f0f0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 4px;
+            position: relative;
+            transition: width 1.5s ease;
+            width: 0;
+        }
+
+        .skill-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .skill-percentage {
+            color: #FFD700;
+            font-weight: 700;
+        }
+
         /* Experience Section */
         .experience {
             background: white;
         }
 
-        .experience-grid {
-            display: grid;
-            gap: 2rem;
+        .experience-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        .experience-item {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
+        .experience-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .experience-card {
+            display: none;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 3rem;
+            border-radius: 20px;
             border-left: 5px solid #FFD700;
-            transition: transform 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+            opacity: 0;
         }
 
-        .experience-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .experience-card.active {
+            display: block;
+            transform: translateX(0);
+            opacity: 1;
         }
 
-        .experience-item h3 {
-            font-size: 1.5rem;
+        .card-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .card-header h3 {
+            font-size: 2rem;
             margin-bottom: 0.5rem;
             color: #333;
+            font-weight: 700;
         }
 
-        .experience-item .company {
+        .card-header .company {
             color: #FFD700;
             font-weight: 600;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .experience-item .duration {
+        .card-header .duration {
             color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0;
         }
 
-        .experience-item ul {
+        .card-content ul {
             list-style: none;
             padding-left: 0;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .experience-item li {
-            margin-bottom: 0.5rem;
+        .card-content li {
+            margin-bottom: 1rem;
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
-        .experience-item li:before {
+        .card-content li:before {
             content: "⚡";
             position: absolute;
             left: 0;
             color: #FFD700;
+            font-size: 1.2rem;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .prev-btn, .next-btn {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .card-indicators {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #FFD700;
+            transform: scale(1.2);
+        }
+
+        .indicator:hover {
+            background: #FFA500;
+            transform: scale(1.1);
         }
 
         /* Skills Section */
@@ -376,6 +562,244 @@
             box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
         }
 
+        /* Leadership Section */
+        .leadership {
+            background: #f8f9fa;
+        }
+
+        .leadership-grid {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            justify-content: center;
+        }
+
+        .leadership-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+        }
+
+        .leadership-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .leadership-card:hover::before {
+            left: 100%;
+        }
+
+        .leadership-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(135, 206, 235, 0.2);
+            border-color: #87CEEB;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #87CEEB;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .leadership-card:hover .card-icon {
+            transform: scale(1.2) rotate(5deg);
+            color: #FFD700;
+        }
+
+        .leadership-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .leadership-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Awards Section */
+        .awards {
+            background: white;
+        }
+
+        .awards-grid {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            justify-content: center;
+        }
+
+        .award-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+
+        .award-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .award-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .award-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.2);
+            border-color: #FFD700;
+        }
+
+        .award-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .award-item:hover .award-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .award-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .award-content p {
+            color: #87CEEB;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .award-content span {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Community Section */
+        .community {
+            background: #f8f9fa;
+        }
+
+        .community-grid {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            justify-content: center;
+        }
+
+        .community-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+        }
+
+        .community-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(135, 206, 235, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .community-card:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .community-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(135, 206, 235, 0.2);
+            border-color: #87CEEB;
+        }
+
+        .community-card .card-icon {
+            font-size: 3rem;
+            color: #87CEEB;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .community-card:hover .card-icon {
+            transform: scale(1.2) rotate(-5deg);
+            color: #FFD700;
+        }
+
+        .community-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .community-card p {
+            color: #87CEEB;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .community-card span {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
         /* Education Section */
         .education {
             background: white;
@@ -413,7 +837,8 @@
             color: white;
             padding: 3rem 2rem;
             border-radius: 30px;
-            margin: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
         }
 
@@ -456,6 +881,11 @@
             background: #333;
             color: white;
             text-align: center;
+            border-radius: 30px;
+            margin: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-content {
@@ -536,6 +966,36 @@
             .skills-grid {
                 flex-direction: column;
             }
+
+            .leadership-grid,
+            .awards-grid,
+            .community-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .leadership-card,
+            .award-item,
+            .community-card {
+                min-width: 280px;
+                max-width: 100%;
+            }
+
+            .poetry {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .contact {
+                margin: 1rem;
+                border-radius: 20px;
+            }
+
+            .skills-modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
         }
     </style>
 </head>
@@ -548,6 +1008,9 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#community">Community</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#poetry">Poetry</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -601,47 +1064,75 @@
     <!-- Experience Section -->
     <section id="experience" class="section experience">
         <h2 class="section-title">Professional Experience</h2>
-        <div class="experience-grid">
-            <div class="experience-item">
-                <h3>Senior Software Developer</h3>
-                <div class="company">NAB (National Australian Bank)</div>
-                <div class="duration">2022 - 2025</div>
-                <ul>
-                    <li>Led development of critical banking microservices using Java and Spring Boot</li>
-                    <li>Architected scalable payment processing systems handling millions of transactions</li>
-                    <li>Implemented robust security measures and compliance protocols for financial data</li>
-                    <li>Collaborated with cross-functional teams to deliver high-availability banking solutions</li>
-                    <li>Mentored junior developers and established coding best practices</li>
-                    <li>Optimized system performance resulting in 40% faster transaction processing</li>
-                </ul>
+        <div class="experience-container">
+            <div class="experience-carousel">
+                <div class="experience-card active" data-index="0">
+                    <div class="card-header">
+                        <h3>Senior Software Developer</h3>
+                        <div class="company">NAB (National Australian Bank)</div>
+                        <div class="duration">2022 - 2025</div>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Led development of critical banking microservices using Java and Spring Boot</li>
+                            <li>Architected scalable payment processing systems handling millions of transactions</li>
+                            <li>Implemented robust security measures and compliance protocols for financial data</li>
+                            <li>Collaborated with cross-functional teams to deliver high-availability banking solutions</li>
+                            <li>Mentored junior developers and established coding best practices</li>
+                            <li>Optimized system performance resulting in 40% faster transaction processing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-card" data-index="1">
+                    <div class="card-header">
+                        <h3>Software Engineer</h3>
+                        <div class="company">IBM</div>
+                        <div class="duration">2020 - 2022</div>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Developed enterprise-grade applications using Java, Spring Boot, and microservices</li>
+                            <li>Designed and implemented RESTful APIs for cloud-based solutions</li>
+                            <li>Worked with IBM Cloud platform and containerization technologies (Docker, Kubernetes)</li>
+                            <li>Participated in agile development processes and CI/CD pipeline implementation</li>
+                            <li>Contributed to open-source projects and internal tooling development</li>
+                            <li>Collaborated with global teams across different time zones</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card" data-index="2">
+                    <div class="card-header">
+                        <h3>Junior Software Developer</h3>
+                        <div class="company">Altran (Now Capgemini Engineering)</div>
+                        <div class="duration">2019 - 2020</div>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Started my professional journey developing Java-based applications</li>
+                            <li>Gained hands-on experience with Spring Framework and database technologies</li>
+                            <li>Worked on client projects involving backend system development</li>
+                            <li>Learned software engineering best practices and design patterns</li>
+                            <li>Contributed to team code reviews and documentation</li>
+                            <li>Built foundation in enterprise software development methodologies</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             
-            <div class="experience-item">
-                <h3>Software Engineer</h3>
-                <div class="company">IBM</div>
-                <div class="duration">2020 - 2022</div>
-                <ul>
-                    <li>Developed enterprise-grade applications using Java, Spring Boot, and microservices</li>
-                    <li>Designed and implemented RESTful APIs for cloud-based solutions</li>
-                    <li>Worked with IBM Cloud platform and containerization technologies (Docker, Kubernetes)</li>
-                    <li>Participated in agile development processes and CI/CD pipeline implementation</li>
-                    <li>Contributed to open-source projects and internal tooling development</li>
-                    <li>Collaborated with global teams across different time zones</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <h3>Junior Software Developer</h3>
-                <div class="company">Altran (Now Capgemini Engineering)</div>
-                <div class="duration">2019 - 2020</div>
-                <ul>
-                    <li>Started my professional journey developing Java-based applications</li>
-                    <li>Gained hands-on experience with Spring Framework and database technologies</li>
-                    <li>Worked on client projects involving backend system development</li>
-                    <li>Learned software engineering best practices and design patterns</li>
-                    <li>Contributed to team code reviews and documentation</li>
-                    <li>Built foundation in enterprise software development methodologies</li>
-                </ul>
+            <div class="carousel-controls">
+                <button class="prev-btn" onclick="changeExperience(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="card-indicators">
+                    <span class="indicator active" onclick="goToExperience(0)"></span>
+                    <span class="indicator" onclick="goToExperience(1)"></span>
+                    <span class="indicator" onclick="goToExperience(2)"></span>
+                </div>
+                <button class="next-btn" onclick="changeExperience(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -691,6 +1182,123 @@
                     <span class="skill-tag">Problem Solving</span>
                     <span class="skill-tag">Team Collaboration</span>
                     <span class="skill-tag">Creative Writing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="section leadership">
+        <h2 class="section-title">Leadership & Mentorship</h2>
+        <div class="leadership-grid">
+            <div class="leadership-card">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Team Leadership</h3>
+                    <p>Led cross-functional teams of 8+ developers, driving technical initiatives and architectural decisions that improved system performance by 40%</p>
+                </div>
+            </div>
+            
+            <div class="leadership-card">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Mentoring</h3>
+                    <p>Mentored 5+ junior developers, conducted 200+ code reviews, and established knowledge sharing sessions that accelerated team productivity</p>
+                </div>
+            </div>
+            
+            <div class="leadership-card">
+                <div class="card-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Public Speaking</h3>
+                    <p>Delivered 15+ internal presentations on microservices architecture, security best practices, and technical innovation strategies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="section awards">
+        <h2 class="section-title">Recognition & Awards</h2>
+        <div class="awards-grid">
+            <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <div class="award-content">
+                    <h3>SPOT Award</h3>
+                    <p>NAB • Sept 2024</p>
+                    <span>Driving team efficiency</span>
+                </div>
+            </div>
+            
+            <div class="award-item">
+                <div class="award-icon">⭐</div>
+                <div class="award-content">
+                    <h3>STAR Award</h3>
+                    <p>NAB • May 2024</p>
+                    <span>Independent microservices migration</span>
+                </div>
+            </div>
+            
+            <div class="award-item">
+                <div class="award-icon">🎯</div>
+                <div class="award-content">
+                    <h3>WOW Award</h3>
+                    <p>Altran • Jan 2022</p>
+                    <span>High-quality releases under tight deadline</span>
+                </div>
+            </div>
+            
+            <div class="award-item">
+                <div class="award-icon">🚀</div>
+                <div class="award-content">
+                    <h3>WOW Award</h3>
+                    <p>Altran • Mar 2020</p>
+                    <span>SAMSUNG microservices application</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="section community">
+        <h2 class="section-title">Community Involvement</h2>
+        <div class="community-grid">
+            <div class="community-card">
+                <div class="card-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Environmental Impact</h3>
+                    <p>NAB Plantation Drive • Feb 2023</p>
+                    <span>Contributed to environmental sustainability efforts</span>
+                </div>
+            </div>
+            
+            <div class="community-card">
+                <div class="card-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="card-content">
+                    <h3>National Service</h3>
+                    <p>NSS at Banasthali University • 2016-2018</p>
+                    <span>Participated in community service initiatives</span>
+                </div>
+            </div>
+            
+            <div class="community-card">
+                <div class="card-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Technical Leadership</h3>
+                    <p>Mayukh'16 Technical Fest • Jan-Mar 2016</p>
+                    <span>Coverage Team Lead for National Level Fest</span>
                 </div>
             </div>
         </div>
@@ -759,7 +1367,139 @@
         </div>
     </section>
 
+    <!-- Skills Modal -->
+    <div id="skillsModal" class="skills-modal">
+        <div class="skills-modal-content">
+            <button class="close-modal" onclick="closeSkillsModal()">&times;</button>
+            <h3>⚡ Technical Skills Showcase ⚡</h3>
+            
+            <div class="skill-bar">
+                <div class="skill-name">
+                    <span>Java</span>
+                    <span class="skill-percentage">95%</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-fill" data-width="95%"></div>
+                </div>
+            </div>
+            
+            <div class="skill-bar">
+                <div class="skill-name">
+                    <span>Spring Boot</span>
+                    <span class="skill-percentage">90%</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-fill" data-width="90%"></div>
+                </div>
+            </div>
+            
+            <div class="skill-bar">
+                <div class="skill-name">
+                    <span>Microservices</span>
+                    <span class="skill-percentage">88%</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-fill" data-width="88%"></div>
+                </div>
+            </div>
+            
+            <div class="skill-bar">
+                <div class="skill-name">
+                    <span>REST APIs</span>
+                    <span class="skill-percentage">92%</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-fill" data-width="92%"></div>
+                </div>
+            </div>
+            
+            <div class="skill-bar">
+                <div class="skill-name">
+                    <span>AWS</span>
+                    <span class="skill-percentage">85%</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-fill" data-width="85%"></div>
+                </div>
+            </div>
+            
+            <div class="skill-bar">
+                <div class="skill-name">
+                    <span>Docker & Kubernetes</span>
+                    <span class="skill-percentage">80%</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-fill" data-width="80%"></div>
+                </div>
+            </div>
+            
+            <div class="skill-bar">
+                <div class="skill-name">
+                    <span>Database Design</span>
+                    <span class="skill-percentage">87%</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-fill" data-width="87%"></div>
+                </div>
+            </div>
+            
+            <div class="skill-bar">
+                <div class="skill-name">
+                    <span>System Architecture</span>
+                    <span class="skill-percentage">90%</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-fill" data-width="90%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Experience Carousel
+        let currentExperienceIndex = 0;
+        const experienceCards = document.querySelectorAll('.experience-card');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showExperience(index) {
+            // Hide all cards
+            experienceCards.forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Remove active class from all indicators
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+            
+            // Show current card and activate indicator
+            experienceCards[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            currentExperienceIndex = index;
+        }
+
+        function changeExperience(direction) {
+            let newIndex = currentExperienceIndex + direction;
+            
+            if (newIndex < 0) {
+                newIndex = experienceCards.length - 1;
+            } else if (newIndex >= experienceCards.length) {
+                newIndex = 0;
+            }
+            
+            showExperience(newIndex);
+        }
+
+        function goToExperience(index) {
+            showExperience(index);
+        }
+
+        // Auto-rotate experience cards every 5 seconds
+        setInterval(() => {
+            changeExperience(1);
+        }, 5000);
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -786,6 +1526,42 @@
             }
         });
 
+        // Skills Modal Functions
+        function openSkillsModal() {
+            const modal = document.getElementById('skillsModal');
+            modal.classList.add('active');
+            
+            // Animate skill bars after modal opens
+            setTimeout(() => {
+                const skillFills = document.querySelectorAll('.skill-fill');
+                skillFills.forEach(fill => {
+                    const width = fill.getAttribute('data-width');
+                    fill.style.width = width;
+                });
+            }, 300);
+        }
+
+        function closeSkillsModal() {
+            const modal = document.getElementById('skillsModal');
+            modal.classList.remove('active');
+            
+            // Reset skill bars
+            const skillFills = document.querySelectorAll('.skill-fill');
+            skillFills.forEach(fill => {
+                fill.style.width = '0%';
+            });
+        }
+
+        // Add click event to profile image
+        document.querySelector('.profile-image').addEventListener('click', openSkillsModal);
+
+        // Close modal when clicking outside
+        document.getElementById('skillsModal').addEventListener('click', (e) => {
+            if (e.target.id === 'skillsModal') {
+                closeSkillsModal();
+            }
+        });
+
         // Add some interactive lightning effects
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('cta-button') || e.target.classList.contains('contact-link')) {
@@ -806,6 +1582,25 @@
                     document.body.removeChild(lightning);
                 }, 500);
             }
+        });
+
+        // Add floating animation to cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.leadership-card, .award-item, .community-card').forEach(card => {
+            observer.observe(card);
         });
     </script>
 </body>
