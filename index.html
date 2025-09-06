@@ -562,6 +562,239 @@
             box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
         }
 
+        /* Projects Section */
+        .projects {
+            background: white;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project-main {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #87CEEB);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .project-main:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(135, 206, 235, 0.2);
+            border-color: #87CEEB;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .project-header h3 {
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .project-badge {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .project-description {
+            margin-bottom: 3rem;
+        }
+
+        .project-description p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-features {
+            margin-bottom: 3rem;
+        }
+
+        .feature-grid {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(135, 206, 235, 0.2);
+            border-color: #87CEEB;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .tech-stack {
+            margin-bottom: 3rem;
+        }
+
+        .tech-stack h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .tech-tag {
+            background: linear-gradient(45deg, #87CEEB, #FFD700);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(135, 206, 235, 0.3);
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(135, 206, 235, 0.4);
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .project-actions {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .project-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .project-link i {
+            font-size: 1.1rem;
+        }
+
         /* Leadership Section */
         .leadership {
             background: #f8f9fa;
@@ -996,6 +1229,40 @@
                 padding: 2rem;
                 margin: 1rem;
             }
+
+            .project-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .project-header h3 {
+                font-size: 2rem;
+            }
+
+            .feature-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-item {
+                min-width: 280px;
+                max-width: 100%;
+            }
+
+            .project-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .project-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project-link {
+                width: 200px;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -1008,6 +1275,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#leadership">Leadership</a></li>
                 <li><a href="#awards">Awards</a></li>
                 <li><a href="#community">Community</a></li>
@@ -1182,6 +1450,80 @@
                     <span class="skill-tag">Problem Solving</span>
                     <span class="skill-tag">Team Collaboration</span>
                     <span class="skill-tag">Creative Writing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-container">
+            <div class="project-main">
+                <div class="project-header">
+                    <h3>Pathshala Q&A Platform</h3>
+                    <div class="project-badge">Full-Stack Application</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-description">
+                        <p>A comprehensive Q&A platform designed to facilitate knowledge sharing and learning through an intelligent question-answer system with advanced features and gamification elements.</p>
+                    </div>
+                    
+                    <div class="project-features">
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">🧠</div>
+                                <h4>Smart Q&A System</h4>
+                                <p>Intelligent categorization and tagging system for efficient question organization</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">🏆</div>
+                                <h4>Reputation System</h4>
+                                <p>Gamified reputation system with points, badges, and achievement tracking</p>
+                            </div>
+                            
+                       
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">💬</div>
+                                <h4>Real-time Chat</h4>
+                                <p>Live messaging system for instant communication and collaboration</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <h4>Tech Stack</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">Microservices</span>
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Redis</span>
+                    
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="project-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1K+</div>
+                            <div class="stat-label">Questions</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2K+</div>
+                            <div class="stat-label">Answers</div>
+                        </div>
+                      
+                    </div>
+                    
+    
                 </div>
             </div>
         </div>
@@ -1599,7 +1941,7 @@
         }, observerOptions);
 
         // Observe all cards for animation
-        document.querySelectorAll('.leadership-card, .award-item, .community-card').forEach(card => {
+        document.querySelectorAll('.leadership-card, .award-item, .community-card, .feature-item, .stat-item').forEach(card => {
             observer.observe(card);
         });
     </script>
